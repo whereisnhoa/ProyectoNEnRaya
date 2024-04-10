@@ -1,0 +1,22 @@
+
+package proyectonenraya;
+
+public class Main_NEnRaya 
+{
+    public static void main(String[] args) 
+    {
+        boolean terminado;
+        
+        // crear jugadores
+        Jugador [] jugadores;
+        
+            // MÉTODOS
+        
+        
+        
+        
+        
+        
+    }
+    
+}
