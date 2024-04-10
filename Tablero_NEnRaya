@@ -1,0 +1,72 @@
+package proyectonenraya;
+
+public class Tablero 
+{
+    // atributos
+    private int[]arrayTablero;
+    
+    // constructor
+    public Tablero(int[] arrayTablero) 
+    {
+        this.arrayTablero = arrayTablero;
+    }
+    
+        // MÉTODOS
+    
+    // método para colocar la ficha
+    public void colocarFicha()
+    {
+        
+    }
+    
+    // método para crear el tablero
+    public void crearTablero()
+    {
+        
+    }
+    
+    // método para mostrar el tablero
+    public void mostrarTablero()
+    {
+        
+    }
+    
+    // método para verificar si el juego tiene que terminar
+    public void verificarFinalizacion()
+    {
+        
+    }
+    
+        // métodos que complementan el método anterior
+    
+    // comprobar fila
+    private void comprobarFila()
+    {
+        
+    }
+    
+    // comprobar columna
+    private void comprobarColumna()
+    {
+        
+    }
+    
+    // comprobar diagonal principal
+    private void comprobarDiagonal()
+    {
+        
+    }
+    
+    // comprobar diagonal inversa
+    private void comprobarDiagonalInversa()
+    {
+        
+    }
+    
+    // método para comprobar si hay empate
+    private void comprobarEmpate()
+    {
+        
+    }
+    
+}
