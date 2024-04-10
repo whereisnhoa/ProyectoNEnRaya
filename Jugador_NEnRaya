@@ -1,0 +1,53 @@
+package proyectonenraya;
+
+public class Jugador 
+{
+    // atributos
+    private char ficha;
+    private String nombre;
+    private boolean turno;
+    
+    // constructor
+    public Jugador(char ficha, String nombre, boolean turno) 
+    {
+        this.ficha = ficha;
+        this.nombre = nombre;
+        this.turno = turno;
+    }
+    
+        // MÉTODOS
+
+    // get y set de ficha
+    private char getFicha() 
+    {
+        return ficha;
+    }
+
+    private void setFicha(char ficha) 
+    {
+        this.ficha = ficha;
+    }
+
+    // get y set de nombre
+    private String getNombre() 
+    {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) 
+    {
+        this.nombre = nombre;
+    }
+
+    // get y set de turno
+    public boolean getTurno() 
+    {
+        return turno;
+    }
+
+    public void setTurno(boolean turno) 
+    {
+        this.turno = turno;
+    }
+     
+}
