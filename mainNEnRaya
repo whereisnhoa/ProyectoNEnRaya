@@ -1,8 +1,11 @@
 
 package proyectonenraya;
+import java.util.Scanner;
 
 public class Main_NEnRaya 
 {
+    static Scanner leer= new Scanner( System.in);
+
     public static void main(String[] args) 
     {
         boolean terminado;
