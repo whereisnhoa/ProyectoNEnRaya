@@ -1,25 +1,13 @@
-
 package proyectonenraya;
-import java.util.Scanner;
 
 public class Main_NEnRaya 
 {
-    static Scanner leer= new Scanner( System.in);
-
-    public static void main(String[] args) 
+    public static void main(String [] args)
     {
-        boolean terminado;
+        Juego juego1= new Juego(); 
         
-        // crear jugadores
-        Jugador [] jugadores;
-        
-            // MÉTODOS
-        
-        
-        
-        
-        
+        juego1.jugar(); 
         
     }
     
-}
+}     
