@@ -3,10 +3,10 @@ package proyectonenraya;
 public class Tablero 
 {
     // atributos
-    private int[]arrayTablero;
+    private int[][]arrayTablero;
     
     // constructor
-    public Tablero(int[] arrayTablero) 
+     public Tablero(int[][] arrayTablero) 
     {
         this.arrayTablero = arrayTablero;
     }
