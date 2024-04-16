@@ -12,7 +12,7 @@ public class Jugador
     {
         this.ficha = ficha;
         this.nombre = nombre;
-        this.turno = turno;
+        this.turno = false;
     }
     
         // MÉTODOS
