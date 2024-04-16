@@ -22,7 +22,9 @@ public class Juego
     {
       while(!terminado)
       {
-        
+        colocarFicha();
+        mostrarTablero();
+        verificarFinalizacion();
       }  
     }
     
