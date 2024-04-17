@@ -1,0 +1,57 @@
+package juegonumaleatorio;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class JuegoNumAleatorio 
+{
+    static Scanner leer= new Scanner (System.in);
+
+    public static void main(String[] args) 
+    {//INICIO MAIN
+        //VARIABLES
+        int numAdivinar=0, intento=0;
+        //MÉTODOS
+        generarNumero(numAdivinar);
+        adivinarNumero( generarNumero(numAdivinar), intento);
+    }//FIN MAIN
+    
+    public static int generarNumero(int numAdivinar)
+    {//INICIO GENERAR NUMERO
+        Random aleatorio= new Random ();
+        numAdivinar= aleatorio.nextInt(20)+1;
+        return numAdivinar;
+    }//FIN GENERAR NUMERO
+        
+        public static void adivinarNumero(int numAdivinar, int intento)
+    {//INICIO ADIVINAR NUMERO
+        int numIntentos=0;
+        boolean adivinar=true;
+        
+        System.out.println(" --------------------------------");
+        System.out.println("|ADIVINA EL NÚMERO (DEL 1 AL 20)|");
+        System.out.println(" --------------------------------");
+        while(adivinar)
+        {
+                System.out.println("Introduce tu intento:");
+                intento= leer.nextInt();
+                if(intento!=numAdivinar)
+                {
+                    if(intento>numAdivinar)
+                    {
+                        System.out.println("--PISTA-- El número es menor");
+                        numIntentos++;
+                    }else
+                     {
+                        System.out.println("--PISTA-- El número es mayor");
+                        numIntentos++;
+                     }
+                }else{
+                    adivinar=false;
+                    System.out.println("¡Has acertado!");
+                    System.out.println("Lo has intentado " +numIntentos +" veces.");
+                }
+        }
+    }//FIN ADIVINAR NUMERO
+    
+}
