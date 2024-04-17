@@ -1,0 +1,450 @@
+package pkg3enrayadefinitivo;
+
+//importar scanner
+import java.util.Scanner;
+
+public class Main 
+{//inicio CLASS
+
+    //SCANNER "LEER"
+    static Scanner leer= new Scanner(System.in);
+    
+    // MAIN
+    public static void main(String[] args) 
+    {//inicio MAIN
+        
+       //VARIABLES
+           String jugador1="", jugador2="";
+           int empieza=0;
+           
+           // asignar un apodo a cada jugador
+           apodoJugador(jugador1, jugador2, empieza);
+           
+           // jugar
+           jugar(jugador1, jugador2, empieza);
+        
+    }//fin MAIN
+    
+        // MÉTODO PARA ASIGNAR UN APODO A LOS JUGADORES
+            public static void apodoJugador(String jugador1, String jugador2, int empieza)
+            {// inicio método APODOJUGADOR
+
+                    System.out.println("Jugador 1, introduzca su nombre: ");
+                    jugador1= leer.nextLine();
+                    System.out.println("Jugador 2, introduzca su nombre: ");
+                    jugador2= leer.nextLine();
+                    
+                    System.out.println("¿Quién empezará primero? (1 o 2)");
+                    empieza= leer.nextInt();
+                    if(empieza==1)
+                    {
+                        System.out.println("Empieza "+jugador1);
+                    }else if (empieza==2)
+                        {
+                        System.out.println("Empieza "+jugador2);
+                        }else
+                             {
+                                 System.out.println("El dato introducido es incorrecto, vuelve a intentarlo:");
+                             }                            
+                    jugar(jugador1,jugador2, empieza);
+            }// fin método APODOJUGADOR
+            
+        // PARTIDA
+            public static void jugar(String jugador1, String jugador2, int empieza)
+            {// inicio método JUGAR
+
+                //VARIABLES
+                    char J1='X', J2='O', vacio='-';
+                    // turno actual (true = J1, false = J2)
+                    boolean turno=true;
+                    // tablero
+                    System.out.println("Introduce el parámetro del tablero");
+                    int param= leer.nextInt();
+                    char tablero[][] = new char[param][param];
+                // elegir turno
+                elegirTurno(jugador1, jugador2);
+                // rellenar tablero con los guiones
+                rellenarTablero(tablero, vacio);
+
+                boolean posValida, correcto;
+
+                // fila y columna
+                int fila, columna;
+
+                //NO termina hasta que uno gane o haya empate
+                while (!finPartida(tablero, vacio)) 
+                {
+                    do
+                    {
+                        // mostrar el turno del jugador
+                        mostrarTurno(turno, jugador1, jugador2, empieza);
+                        // mostrar el tablero
+                        mostrarTablero(tablero);
+
+                        correcto= false;
+
+                        // pedir posición
+                        fila= pedirPosicion("Introduce la fila (0-"+param+")");
+                        columna= pedirPosicion("Introduce la columna (0-"+param+")");
+
+                        // validar la posicion
+                        posValida= validarPosicion(tablero, fila, columna);
+
+                           // si es valido (0-3), se comprueba que no haya ningún símbolo
+                           if(posValida) 
+                           { // posición válida (0-3)
+                               if(!posicionOcupada(tablero, fila, columna, vacio)) 
+                               { // no hay símbolo
+                                   correcto = true;
+                               }else // posición ocupada
+                                    {
+                                      System.out.println("Posición ocupada, inténtalo de nuevo");
+                                    }
+                           }else // posición fuera del rango (0-3)
+                                {    
+                                  System.out.println("La posicion no es valida, inténtalo de nuevo");
+                                }
+                     // mientras NO sea correcto, no sale del bucle
+                    }while(!correcto);
+
+                    // depende del turno inserta un símbolo u otro (jugador 1: X | jugador 2: O)
+                    if (turno) 
+                    {
+                        insertar(tablero, fila, columna, J1);
+                    } else 
+                         {
+                            insertar(tablero, fila, columna, J2);
+                         }
+
+                    //cambio de turno
+                    turno = !turno;
+                }
+
+                //Mostrar el tablero
+                mostrarTablero(tablero);
+
+                //Mostrar el ganador
+                mostrarGanador(tablero, J1, J2, vacio, jugador1, jugador2);
+
+            }// fin método JUGAR
+
+        // MÉTODO PARA PEDIR LA POSICIÓN
+            public static int pedirPosicion(String mensaje)
+            {// inicio método PEDIRPOSICION
+                System.out.println(mensaje);
+                int num= leer.nextInt();
+
+                return num;
+            }// fin método PEDIRPOSICION
+
+        // MÉTODO PARA INSERTAR EL SÍMBOLO
+            public static void insertar(char[][] tablero, int fila, int columna, char simbolo) 
+            {
+                tablero[fila][columna] = simbolo;
+            }
+
+        // MÉTODO PARA RELLENAR EL TABLERO
+            public static void rellenarTablero(char[][]tablero, char simbolo)
+            {// inicio método RELLENARTABLERO
+
+                 for (int i = 0; i < tablero.length; i++) 
+                 {
+                    for (int j = 0; j < tablero.length; j++)
+                    {
+                        tablero[i][j] = simbolo;
+                    }
+                }
+            }// fin método RELLENARTABLERO
+
+        // MÉTODO PARA MOSTRAR EL TABLERO
+            public static void mostrarTablero(char[][]tablero)
+            {// inicio método MOSTRARTABLERO
+
+                for(int i=0;i<tablero.length;i++)
+                {
+                    for(int j=0;j<tablero[0].length;j++)
+                    {
+                        System.out.print(tablero[i][j]+" ");
+                    }
+                    System.out.println("");
+                }
+
+            }// fin método MOSTRARTABLERO
+
+            public static int elegirTurno(String jugador1, String jugador2)
+            {
+                System.out.println("¿Quién empezará primero? (1 o 2)");
+                int empieza= leer.nextInt();
+                    if(empieza==1)
+                    {
+                        System.out.println("Empieza "+jugador1);
+                    }else if (empieza==2)
+                        {
+                        System.out.println("Empieza "+jugador2);
+                        }else
+                             {
+                                 System.out.println("El dato introducido es incorrecto, vuelve a intentarlo:");
+                             }
+                    return empieza;
+            }
+            
+        // MÉTODO PARA MOSTRAR EL TURNO
+            public static void mostrarTurno(boolean turno, String jugador1, String jugador2, int empieza)
+            {// inicio método MOSTRARTURNO
+                
+                if(empieza==1&&turno)
+                    {
+                      System.out.println("Es tu turno, "+jugador1);
+                    }else if(empieza==2||!turno)
+                         {
+                           System.out.println("Es tu turno, "+jugador2);
+                         }
+                
+            }// fin mérodo MOSTRARTURNO
+    
+        // MÉTODO PARA VALIDAR LA POSICIÓN (0-3)
+            public static boolean validarPosicion(char [][] tablero, int fila, int columna)
+            {// inicio método VALIDARPOSICION
+                if(fila >=0 && fila<tablero.length && columna>=0 && columna<tablero.length){
+                    return true;
+                }
+                return false;
+            }// fin método VALIDARPOSICION
+    
+        //MÉTODO PARA INDICAR SI HAY UN SÍMBOLO EN LA POSICIÓN
+            public static boolean posicionOcupada(char[][] tablero, int fila, int columna, char simboloDef) 
+            {// inicio método HAYVALORPOSICION
+               if (tablero[fila][columna] != simboloDef) 
+               {
+                   return true;
+               }
+               return false;
+           }// fin método HAYVALORPOSICION
+    
+        //MÉTODO PARA INDICAR SI EL TABLERO ESTÁ LLENO
+            public static boolean tableroLleno(char[][]tablero,char simbolo)
+            {// inicio método TABLEROLLENO
+                 for (int i = 0; i < tablero.length; i++) 
+                 {
+                    for (int j = 0; j < tablero[0].length; j++) 
+                    {
+                        if (tablero[i][j] == simbolo) 
+                        {
+                            return false;
+                        }
+                    }
+                }
+                 
+                return true;
+            }// fin método TABLEROLLENO
+    
+        // MÉTODO PARA MOSTRAR EL GANADOR Y CÓMO HA GANADO (línea, columna o diagonal)
+            public static void ganador(char simbolo, char J1, char J2, int tipo, String jugador1, String jugador2) 
+            {// inicio método GANADOR
+                
+                // 1= LINEA, 2= COLUMNA, 3= DIAGONAL
+                switch (tipo) 
+                {
+                    case 1: //LINEA
+                        if(simbolo == J1)
+                        {// GANA EL JUGADOR 1
+                            System.out.println("GANA "+jugador1 +" por LINEA");
+                        }else 
+                            {// GANA EL JUGADOR 2
+                                System.out.println("GANA "+jugador2 +" por LINEA");
+                            }
+                        break;
+                        
+                    case 2: //COLUMNA
+                        if(simbolo == J1) 
+                        {// GANA EL JUGADOR 1
+                            System.out.println("GANA "+jugador1 +" por COLUMNA");
+                        }else 
+                            {// GANA EL JUGADOR 2
+                                System.out.println("GANA "+jugador2 +" por COLUMNA");
+                            }
+                        break;
+                        
+                    case 3: //DIAGONAL
+                        if(simbolo == J1) 
+                        {// GANA EL JUGADOR 1
+                            System.out.println("GANA "+jugador1 +" por DIAGONAL");
+                        }else 
+                            {// GANA EL JUGADOR 2
+                                System.out.println("GANA "+jugador2 +" por DIAGONAL");
+                            }
+                        break;
+                }
+                
+            }// fin método GANADOR
+    
+        // MÉTODO AUXULIAR AL ANTERIOR
+            public static void mostrarGanador(char[][] tablero, char J1, char J2, char simDef, String jugador1, String jugador2)
+            {//inicio método MOSTRARGANADOR
+
+                            //
+                            char simbolo = coincideLinea(tablero, simDef);
+                            if (simbolo != simDef) 
+                            {
+                                ganador(simbolo, J1, J2, 1, jugador1, jugador2);
+                            }
+
+                            //
+                            simbolo = coincideColumna(tablero, simDef);
+                            if (simbolo != simDef)
+                            {
+                                ganador(simbolo, J1, J2, 2, jugador1, jugador2);
+                            }
+
+                            //
+                             simbolo = coincideDiagonal(tablero, simDef);
+
+                            if (simbolo != simDef) 
+                            {
+                                ganador(simbolo, J1, J2, 3, jugador1, jugador2);
+                            }
+                            
+                        }// fin método MOSTRARGANADOR
+            
+
+        // MÉTODO PARA REVISAR SI HAY UN GANADOR (en linea)
+            public static char coincideLinea(char[][] tablero, char simboloDef) 
+            {// inicio método COINCIDELINEA
+                char simbolo;
+                boolean coincidencia;
+
+                for (int i = 0; i < tablero.length; i++) 
+                {
+                    coincidencia = true;
+                    
+                    // cogemos el simbolo correspondiente de la fila
+                    simbolo = tablero[i][0];
+                    
+                        // comparamos los símbolos
+                        if (simbolo != simboloDef) 
+                        {
+                            for (int j = 1; j < tablero[0].length; j++) 
+                            {
+                                // si NO coincide ya NO hay ganador en esta fila
+                                if (simbolo != tablero[i][j]) 
+                                {
+                                    coincidencia = false;
+                                }
+                            }
+                            
+                            // si coincide la línea, devuelve el símbolo ganador
+                            if (coincidencia) 
+                            {
+                                return simbolo;
+                            }
+                        }
+                }
+                // si no hay ganador, devuelve el símbolo por defecto
+                return simboloDef;
+            }// fin método COINCIDELINEA
+    
+        // MÉTODO PARA REVISAR SI HAY UN GANADOR (en columna)
+            public static char coincideColumna(char[][] tablero, char simboloDef) 
+            {// inicio método COINCIDECOLUMNA
+                char simbolo;
+                boolean coincidencia;
+
+                for (int j = 0; j < tablero.length; j++) 
+                {
+                    coincidencia = true;
+                    
+                    // cogemos el simbolo correspondiente de la columna
+                    simbolo = tablero[0][j];
+                    
+                    // comparamos los símbolos
+                    if (simbolo != simboloDef) 
+                    {
+                        for (int i = 1; i < tablero[0].length; i++) 
+                        {
+                            // si NO coincide ya NO hay ganador en esta columna
+                            if (simbolo != tablero[i][j]) 
+                            {
+                                coincidencia = false;
+                            }
+                        }
+                        // si coincide la columna, devuelve el símbolo ganador
+                        if (coincidencia) 
+                        {
+                            return simbolo;
+                        }
+                    }
+                }
+                // si no hay ganador, devuelve el simbolo por defecto
+                return simboloDef;
+            }// fin método COINCIDECOLUMNA
+    
+        // MÉTODO PARA REVISAR SI HAY UN GANADOR (en diagonal)
+            public static char coincideDiagonal(char[][] tablero, char simboloDef) 
+            {//  inicio método COINCIDEDIAGONAL
+
+                char simbolo;
+                boolean coincidencia= true;
+
+                //Diagonal principal
+                
+                    // cogemos el simbolo correspondiente
+                    simbolo = tablero[0][0];
+                    // comparamos los símbolos
+                    if (simbolo != simboloDef) 
+                    {
+                        for (int i = 1; i < tablero.length; i++) 
+                        {
+                            // si NO coincide ya NO hay ganador
+                            if (simbolo != tablero[i][i]) 
+                            {
+                                coincidencia = false;
+                            }
+                        }
+                        // si coincide, devuelve el símbolo ganador
+                        if (coincidencia) 
+                        {
+                            return simbolo;
+                        }
+                    }
+
+                //Diagonal inversa
+                
+                    // cogemos el simbolo correspondiente
+                    simbolo = tablero[0][2];
+                    // comparamos los símbolos
+                    if (simbolo != simboloDef) 
+                    {
+                        for (int i = 1, j = 1; i < tablero.length; i++, j--) 
+                        {
+                            // si NO coincide ya NO hay ganador
+                            if (simbolo != tablero[i][j]) 
+                            {
+                                coincidencia = false;
+                            }
+                        }
+
+                        // si coincide, devuelve el símbolo ganador
+                        if (coincidencia) 
+                        {
+                            return simbolo;
+                        }
+                    }
+
+                // si no hay ganador, devuelve el simbolo por defecto
+                return simboloDef;
+
+            }// fin método COINCIDEDIAGONAL
+    
+        // MÉTODO PARA FINALIZAR LA PARTIDA (la partida acaba cuando el tablero está lleno (empate) o hay un ganador)
+            public static boolean finPartida(char[][] tablero, char simboloDef) 
+            {// inicio método FINPARTIDA
+               if (tableroLleno(tablero, simboloDef)|| coincideLinea(tablero, simboloDef) != simboloDef|| coincideColumna(tablero, simboloDef) != simboloDef|| coincideDiagonal(tablero, simboloDef) != simboloDef) 
+               {
+                   return true;
+               }
+               return false;
+            }// fin método FINPARTIDA
+    
+}//fin CLASS
+
+    // FIN DEL PROGRAMA :)
