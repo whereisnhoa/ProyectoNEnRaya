@@ -1,10 +1,16 @@
-
 package proyectonenraya;
+
+//importar scanner
+import java.util.Scanner;
 
 public class Tablero 
 {
+    //SCANNER "LEER"
+    static Scanner leer= new Scanner(System.in);
+    
     // atributos
     private char[][]arrayTablero;
+    // - - -
     
     // constructor
     public Tablero(char[][] arrayTablero) 
@@ -14,19 +20,34 @@ public class Tablero
     
         // MÉTODOS
     
-    // método para colocar la ficha
-    public void colocarFicha()
+    // método para colocar la ficha (TERMINAR)
+    public void colocarFicha(char[][] arrayTablero, int fila, int columna, char simbolo, char simboloDef)
     {
         // variables
         boolean valido= false;
-        
         // - - -
+        
+        while(valido)
+        {
+             if(fila >=0 && fila<arrayTablero.length && columna>=0 && columna<arrayTablero.length && arrayTablero[fila][columna] != simboloDef)
+             {
+                    System.out.println();
+                    
+             }
+             System.out.println("");
+        }
         
     }
     
-    // método para crear el tablero
-    public void crearTablero(char simbolo)
+    // método para crear el tablero (TERMINAR PARAM)
+    public void crearTablero(char[][]arrayTablero, char simbolo)
     {
+        // pedir la longitud del tablero
+        System.out.println("Introduce el parámetro del tablero");
+        int param= leer.nextInt();
+        // (PONER PARáMETRO EN EL ARRAY) - - - - - - - - - - - - - - - - - -  - -
+        
+        // crear tablero
         for (int i = 0; i < arrayTablero.length; i++) 
         {
             for (int j = 0; j < arrayTablero.length; j++)
