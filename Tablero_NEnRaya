@@ -17,7 +17,7 @@ public class Tablero
     // método para colocar la ficha
     public void colocarFicha()
     {
-        // atributos
+        // variables
         boolean valido= false;
         
         // - - -
@@ -28,29 +28,26 @@ public class Tablero
     public void crearTablero(char simbolo)
     {
         for (int i = 0; i < arrayTablero.length; i++) 
-                 {
-                    for (int j = 0; j < arrayTablero.length; j++)
-                    {
-                        arrayTablero[i][j] = simbolo;
-                    }
-                 }
+        {
+            for (int j = 0; j < arrayTablero.length; j++)
+            {
+              arrayTablero[i][j] = simbolo;
+            }
+        }
     }
     
     // método para mostrar el tablero
-    public void mostrarTablero(char[][]tablero)
-    {// inicio método MOSTRARTABLERO
-
-        for(int i=0;i<tablero.length;i++)
+    public void mostrarTablero(char[][]arrayTablero)
+    {
+        for(int i=0;i<arrayTablero.length;i++)
         {
-            for(int j=0;j<tablero[0].length;j++)
+            for(int j=0;j<arrayTablero[0].length;j++)
             {
-                System.out.print(tablero[i][j]+" ");
+                System.out.print(arrayTablero[i][j]+" ");
             }
             System.out.println("");
         }
-
-    }// fin método MOSTRARTABLERO
-       
+    }
     
     // método para verificar si el juego tiene que terminar
     public void verificarFinalizacion()
@@ -58,30 +55,142 @@ public class Tablero
         
     }
     
-        // métodos que complementan el método anterior
+        // métodos que complementan el método anterior:
     
-    // comprobar fila
-    private void comprobarFila()
+    // método para comprobar fila
+    private char comprobarFila(char[][] arrayTablero, char simboloDef)
     {
+        // variables
+        char simbolo;
+        boolean coincidencia;
+        // - - -
         
+                for (int i = 0; i < arrayTablero.length; i++) 
+                {
+                    coincidencia = true;
+                    
+                    // cogemos el simbolo correspondiente de la fila
+                    simbolo = arrayTablero[i][0];
+                    
+                        // comparamos los símbolos
+                        if (simbolo != simboloDef) 
+                        {
+                            for (int j = 1; j < arrayTablero[0].length; j++) 
+                            {
+                                // si NO coincide ya NO hay ganador en esta fila
+                                if (simbolo != arrayTablero[i][j]) 
+                                {
+                                    coincidencia = false;
+                                }
+                            }
+                            
+                            // si coincide la línea, devuelve el símbolo ganador
+                            if (coincidencia) 
+                            {
+                                return simbolo;
+                            }
+                        }
+                }
+        // si no hay ganador, devuelve el símbolo por defecto
+        return simboloDef;
     }
     
-    // comprobar columna
-    private void comprobarColumna()
+    // método para comprobar columna
+    private char comprobarColumna(char[][] arrayTablero, char simboloDef)
     {
-        
+        // variables
+         char simbolo;
+         boolean coincidencia;
+         // - - -
+
+                for (int j = 0; j < arrayTablero.length; j++) 
+                {
+                    coincidencia = true;
+                    
+                    // cogemos el simbolo correspondiente de la columna
+                    simbolo = arrayTablero[0][j];
+                    
+                    // comparamos los símbolos
+                    if (simbolo != simboloDef) 
+                    {
+                        for (int i = 1; i < arrayTablero[0].length; i++) 
+                        {
+                            // si NO coincide ya NO hay ganador en esta columna
+                            if (simbolo != arrayTablero[i][j]) 
+                            {
+                                coincidencia = false;
+                            }
+                        }
+                        // si coincide la columna, devuelve el símbolo ganador
+                        if (coincidencia) 
+                        {
+                            return simbolo;
+                        }
+                    }
+                }
+        // si no hay ganador, devuelve el simbolo por defecto
+        return simboloDef;
     }
     
-    // comprobar diagonal principal
-    private void comprobarDiagonal()
+    // método para comprobar diagonal principal
+    private char comprobarDiagonal(char[][] arrayTablero, char simboloDef)
     {
-        
+        // variables
+        char simbolo;
+        boolean coincidencia= true;
+        // - - -
+                    // cogemos el simbolo correspondiente
+                    simbolo = arrayTablero[0][0];
+                    // comparamos los símbolos
+                    if (simbolo != simboloDef) 
+                    {
+                        for (int i = 1; i < arrayTablero.length; i++) 
+                        {
+                            // si NO coincide ya NO hay ganador
+                            if (simbolo != arrayTablero[i][i]) 
+                            {
+                                coincidencia = false;
+                            }
+                        }
+                        // si coincide, devuelve el símbolo ganador
+                        if (coincidencia) 
+                        {
+                            return simbolo;
+                        }
+                    }
+        // si no hay ganador, devuelve el simbolo por defecto
+        return simboloDef;
     }
     
-    // comprobar diagonal inversa
-    private void comprobarDiagonalInversa()
+    // método para comprobar diagonal inversa
+    private char comprobarDiagonalInversa(char[][] arrayTablero, char simboloDef)
     {
-        
+        // variables
+         char simbolo;
+         boolean coincidencia= true;
+         // - - -
+                    // cogemos el simbolo correspondiente
+                    simbolo = arrayTablero[0][2];
+                    // comparamos los símbolos
+                    if (simbolo != simboloDef) 
+                    {
+                        for (int i = 1, j = 1; i < arrayTablero.length; i++, j--) 
+                        {
+                            // si NO coincide ya NO hay ganador
+                            if (simbolo != arrayTablero[i][j]) 
+                            {
+                                coincidencia = false;
+                            }
+                        }
+
+                        // si coincide, devuelve el símbolo ganador
+                        if (coincidencia) 
+                        {
+                            return simbolo;
+                        }
+                    }
+        // si no hay ganador, devuelve el simbolo por defecto
+        return simboloDef;
     }
     
     // método para comprobar si hay empate
