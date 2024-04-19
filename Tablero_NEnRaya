@@ -1,3 +1,4 @@
+
 package proyectonenraya;
 
 //importar scanner
@@ -43,7 +44,7 @@ public class Tablero
     public void crearTablero(char[][]arrayTablero, char simbolo)
     {
         // pedir la longitud del tablero
-        System.out.println("Introduce el parámetro del tablero");
+        System.out.println("Introduce la longitud del tablero");
         int param= leer.nextInt();
         // (PONER PARáMETRO EN EL ARRAY) - - - - - - - - - - - - - - - - - -  - -
         
@@ -73,7 +74,14 @@ public class Tablero
     // método para verificar si el juego tiene que terminar
     public void verificarFinalizacion()
     {
-        
+        boolean empate = true;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (arrayTablero[i][j] == '-') {
+                    empate = false; // Todavía hay celdas vacías
+                }
+            }
+        }
     }
     
         // métodos que complementan el método anterior:
@@ -221,3 +229,4 @@ public class Tablero
     }
     
 }
+
