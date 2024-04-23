@@ -21,7 +21,7 @@ public class Tablero
     
         // MÉTODOS
     
-    // método para colocar la ficha (TERMINAR)
+    // método para colocar la ficha
     public void colocarFicha(char[][] arrayTablero, int fila, int columna, char simbolo, char simboloDef)
     {
         // variables
@@ -30,14 +30,24 @@ public class Tablero
         
         while(valido)
         {
-             if(fila >=0 && fila<arrayTablero.length && columna>=0 && columna<arrayTablero.length && arrayTablero[fila][columna] != simboloDef)
+            System.out.println("Introduce la fila");
+            fila= leer.nextInt();
+            System.out.println("Introduce la columna");
+            fila= leer.nextInt();
+            
+             if(fila >=0 && fila<arrayTablero.length && columna>=0 && columna<arrayTablero.length && arrayTablero[fila][columna] != simbolo)
              {
-                    System.out.println();
+                 // si la posición es válida y no está ocupada, inserta la ficha.
+                 arrayTablero[fila][columna] = simbolo;
+                 valido = true;
                     
-             }
-             System.out.println("");
+             }else{
+                    // si la posición no es válida o está ocupada, no inserta la ficha.
+                    System.out.println("La posición no es correcta, vuelve a intentarlo.");
+                  }
+             
         }
-        
+       
     }
     
     // método para crear el tablero (TERMINAR PARAM)
