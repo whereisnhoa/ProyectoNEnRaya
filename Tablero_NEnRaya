@@ -223,9 +223,20 @@ public class Tablero
     }
     
     // método para comprobar si hay empate
-    private void comprobarEmpate()
+    private boolean comprobarEmpate(char[][]arrayTablero,char simbolo)
     {
-        
+         for (int i = 0; i < arrayTablero.length; i++) 
+                 {
+                    for (int j = 0; j < arrayTablero[0].length; j++) 
+                    {
+                        if (arrayTablero[i][j] == simbolo) 
+                        {
+                            return false;
+                        }
+                    }
+                }
+                 
+                return true;
     }
     
 }
