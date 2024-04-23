@@ -233,20 +233,22 @@ public class Tablero
     }
     
     // método para comprobar si hay empate
-    private boolean comprobarEmpate(char[][]arrayTablero,char simbolo)
+    private boolean comprobarEmpate(char[][]arrayTablero)
     {
-         for (int i = 0; i < arrayTablero.length; i++) 
-                 {
-                    for (int j = 0; j < arrayTablero[0].length; j++) 
-                    {
-                        if (arrayTablero[i][j] == simbolo) 
-                        {
-                            return false;
-                        }
-                    }
+        boolean empate = true;
+        
+        for (int i = 0; i < 3; i++) 
+        {
+            for (int j = 0; j < 3; j++) 
+            {
+                if (arrayTablero[i][j] == '-') 
+                {
+                    return false; // Todavía hay celdas vacías
                 }
-                 
-                return true;
+            }
+        }
+        
+        return true;
     }
     
 }
