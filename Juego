@@ -1,31 +1,10 @@
 package proyectonenraya;
-import java.util.Scanner;
 
 public class Juego 
 {
-    Scanner leer= new Scanner(System.in);
     
-    boolean terminado;  
-    // crear jugadores
-    Jugador [] jugadores;
-    
-    // constructor
-    public Juego(Jugador []jugadores, boolean terminado)
-    {
-        this.jugadores= new Jugador[2];
-        this.terminado= false;
-    }    
-    
-        // MÉTODOS
-    
-    public void iniciarJuego()
-    {
-      while(!terminado)
-      {
-        colocarFicha();
-        mostrarTablero();
-        verificarFinalizacion();
-      }  
-    }
+    Juego juego1= new Juego(); 
+        
+    // juego1.jugar(); 
     
 }
