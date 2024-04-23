@@ -84,14 +84,10 @@ public class Tablero
     // método para verificar si el juego tiene que terminar
     public void verificarFinalizacion()
     {
-        boolean empate = true;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (arrayTablero[i][j] == '-') {
-                    empate = false; // Todavía hay celdas vacías
-                }
-            }
-        }
+       if(comprobarFila()||comprobarColumna()...) // TERMINAR
+       {
+           
+       }
     }
     
         // métodos que complementan el método anterior:
