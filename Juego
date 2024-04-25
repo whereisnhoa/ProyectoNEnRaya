@@ -1,10 +1,16 @@
 package proyectonenraya;
 
-public class Juego 
+public class Juego
 {
     
-    Juego juego1= new Juego(); 
-        
-    // juego1.jugar(); 
+    // Método para iniciar el juego
+    public void iniciarJuego() 
+    {
+        System.out.println("¡Bienvenido al juego del 3 en raya!");
+        System.out.println("Tablero inicial:");
+        arrayTablero.mostrarTablero();
+        System.out.println("Comienza " + jugador1.getNombre() + " (X)");
+    }
+
     
 }
