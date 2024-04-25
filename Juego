@@ -1,15 +1,53 @@
+
 package proyectonenraya;
 
 public class Juego
 {
     
     // Método para iniciar el juego
-    public void iniciarJuego() 
+    public void jugar() 
     {
         System.out.println("¡Bienvenido al juego del 3 en raya!");
         System.out.println("Tablero inicial:");
         arrayTablero.mostrarTablero();
         System.out.println("Comienza " + jugador1.getNombre() + " (X)");
+        
+        while (!juegoTerminado) 
+        {
+            System.out.println("Turno de " + turnoActual.getNombre() + " (" + turnoActual.getSimbolo() + ")");
+            System.out.print("Ingrese la fila (0-2): ");
+            int fila = leer.nextInt();
+            System.out.print("Ingrese la columna (0-2): ");
+            int columna = leer.nextInt();
+
+            if (arrayTablero.realizarMovimiento(fila, columna, turnoActual.getSimbolo())) 
+            {
+                arrayTablero.mostrarTablero();
+                char ganador = arrayTablero.verificarGanador();
+                if (ganador != '-') 
+                {
+                    System.out.println("¡" + turnoActual.getNombre() + " ha ganado!");
+                    juegoTerminado = true;
+                } else if (tableroLleno()) 
+                    {
+                        System.out.println("¡Empate!");
+                        juegoTerminado = true;
+                    } else 
+                        {
+                            // Cambiar de turno
+                            if (turnoActual == jugador1) 
+                            {
+                                turnoActual = jugador2;
+                            } else 
+                                {
+                                    turnoActual = jugador1;
+                                }
+                        }           
+            } else 
+                   {
+                      System.out.println("Movimiento inválido. Inténtalo de nuevo.");
+                   }
+        }
     }
 
     
