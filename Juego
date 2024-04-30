@@ -1,4 +1,10 @@
 
+package proyectonenraya;
+//importar random
+import java.util.Random;
+//importar scanner
+import java.util.Scanner;
+
 public class Juego
 {
     private Tablero tablero;
@@ -23,20 +29,22 @@ public class Juego
         System.out.println("Ingrese el nombre del Jugador 2:");
         String nombreJugador2 = leer.nextLine();
         
-        jugador1.getNombre();
-        jugador2.getNombre();
+        jugador1 = new Jugador(nombreJugador1, 'X');
+        jugador2 = new Jugador(nombreJugador2, 'O');
+
+        elegirTurno();
        
     }
     
     // Método para elegir turno
     public void elegirTurno() 
     {
-        Random random = new Random();
-        boolean turnoJugador1 = random.nextBoolean();
-        jugadorActual = turnoJugador1 ? jugador1 : jugador2;
-        
-       // System.out.println("¿Qúe jugador va a empezar la partida?");
-       // jugadorActual= leer.();
+        //Random random = new Random();
+        //boolean turnoJugador1 = random.nextBoolean();
+        //jugadorActual = turnoJugador1 ? jugador1 : jugador2;
+    
+        jugadorActual = jugador1;
+        jugador1.setTurno(true);
     }
             
     // Método para cambiar turno
@@ -53,9 +61,9 @@ public class Juego
         // - - -
         
         System.out.println("¡Bienvenido al juego del N en raya!");
+        nombrarJugadores();
         tablero.crearTablero();
         tablero.mostrarTablero();
-        elegirTurno();
         
         while(terminado)
         {
@@ -68,4 +76,3 @@ public class Juego
 
     
 }
-
