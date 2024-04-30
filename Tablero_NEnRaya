@@ -1,4 +1,3 @@
-
 package proyectonenraya;
 
 //importar scanner
@@ -21,7 +20,7 @@ public class Tablero
     
         // MÉTODOS
     
-    // método para colocar la ficha
+    // método para colocar la ficha (TERMINAR)
     public void colocarFicha(char[][] arrayTablero, int fila, int columna, char simbolo, char simboloDef)
     {
         // variables
@@ -33,7 +32,7 @@ public class Tablero
             System.out.println("Introduce la fila");
             fila= leer.nextInt();
             System.out.println("Introduce la columna");
-            fila= leer.nextInt();
+            columna= leer.nextInt();
             
              if(fila >=0 && fila<arrayTablero.length && columna>=0 && columna<arrayTablero.length && arrayTablero[fila][columna] != simbolo)
              {
@@ -56,7 +55,7 @@ public class Tablero
         // pedir la longitud del tablero
         System.out.println("Introduce la longitud del tablero");
         int param= leer.nextInt();
-        // (PONER PARáMETRO EN EL ARRAY) - - - - - - - - - - - - - - - - - -  - -
+        arrayTablero = new char[param][param];
         
         // crear tablero
         for (int i = 0; i < arrayTablero.length; i++) 
@@ -84,7 +83,7 @@ public class Tablero
     // método para verificar si el juego tiene que terminar
     public void verificarFinalizacion()
     {
-       if(comprobarFila()||comprobarColumna()...) // TERMINAR
+       //if(comprobarFila()||comprobarColumna()...) // TERMINAR
        {
            
        }
@@ -214,7 +213,7 @@ public class Tablero
                             // si NO coincide ya NO hay ganador
                             if (simbolo != arrayTablero[i][j]) 
                             {
-                                coincidencia = false;
+                                coincidencia = false; 
                             }
                         }
 
@@ -248,4 +247,3 @@ public class Tablero
     }
     
 }
-
