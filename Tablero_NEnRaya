@@ -22,7 +22,7 @@ public class Tablero
         // MÉTODOS
     
     // método para colocar la ficha (TERMINAR)
-    public void colocarFicha(char simbolo)
+    public void colocarFicha(char ficha)
     {
         // variables
         boolean valido= false;
@@ -35,10 +35,10 @@ public class Tablero
             System.out.println("Introduce la columna:");
             int columna= leer.nextInt();
             
-             if(fila >=0 && fila<arrayTablero.length && columna>=0 && columna<arrayTablero.length && arrayTablero[fila][columna] != simbolo)
+             if(fila >=0 && fila<arrayTablero.length && columna>=0 && columna<arrayTablero.length && arrayTablero[fila][columna] != ficha)
              {
                  // si la posición es válida y no está ocupada, inserta la ficha.
-                 arrayTablero[fila][columna] = simbolo;
+                 arrayTablero[fila][columna] = ficha;
                  valido= !valido; /// posicion valida
                     
              }else{
@@ -96,7 +96,7 @@ public class Tablero
     private char comprobarFila()
     {
         // variables
-        char simbolo;
+        char ficha;
         char simboloDef= '-';
         boolean coincidencia;
         // - - -
@@ -106,15 +106,15 @@ public class Tablero
                     coincidencia = true;
                     
                     // cogemos el simbolo correspondiente de la fila
-                    simbolo = arrayTablero[i][0];
+                    ficha = arrayTablero[i][0];
                     
                         // comparamos los símbolos
-                        if (simbolo != simboloDef) 
+                        if (ficha != simboloDef) 
                         {
                             for (int j = 1; j < arrayTablero[0].length; j++) 
                             {
                                 // si NO coincide ya NO hay ganador en esta fila
-                                if (simbolo != arrayTablero[i][j]) 
+                                if (ficha != arrayTablero[i][j]) 
                                 {
                                     coincidencia = !coincidencia;
                                 }
@@ -123,7 +123,7 @@ public class Tablero
                             // si coincide la línea, devuelve el símbolo ganador
                             if (coincidencia) 
                             {
-                                return simbolo;
+                                return ficha;
                             }
                         }
                 }
@@ -136,7 +136,7 @@ public class Tablero
     private char comprobarColumna()
     {
         // variables
-         char simbolo;
+         char ficha;
          char simboloDef= '-';
          boolean coincidencia;
          // - - -
@@ -146,15 +146,15 @@ public class Tablero
                     coincidencia = true;
                     
                     // cogemos el simbolo correspondiente de la columna
-                    simbolo = arrayTablero[0][j];
+                    ficha = arrayTablero[0][j];
                     
                     // comparamos los símbolos
-                    if (simbolo != simboloDef) 
+                    if (ficha != simboloDef) 
                     {
                         for (int i = 1; i < arrayTablero[0].length; i++) 
                         {
                             // si NO coincide ya NO hay ganador en esta columna
-                            if (simbolo != arrayTablero[i][j]) 
+                            if (ficha != arrayTablero[i][j]) 
                             {
                                 coincidencia = !coincidencia;
                             }
@@ -162,7 +162,7 @@ public class Tablero
                         // si coincide la columna, devuelve el símbolo ganador
                         if (coincidencia) 
                         {
-                            return simbolo;
+                            return ficha;
                         }
                     }
                 }
@@ -175,19 +175,19 @@ public class Tablero
     private char comprobarDiagonal()
     {
         // variables
-        char simbolo;
+        char ficha;
         char simboloDef= '-';
         boolean coincidencia= true;
         // - - -
                     // cogemos el simbolo correspondiente
-                    simbolo = arrayTablero[0][0];
+                    ficha = arrayTablero[0][0];
                     // comparamos los símbolos
-                    if (simbolo != simboloDef) 
+                    if (ficha != simboloDef) 
                     {
                         for (int i = 1; i < arrayTablero.length; i++) 
                         {
                             // si NO coincide ya NO hay ganador
-                            if (simbolo != arrayTablero[i][i]) 
+                            if (ficha != arrayTablero[i][i]) 
                             {
                                 coincidencia = !coincidencia;
                             }
@@ -195,7 +195,7 @@ public class Tablero
                         // si coincide, devuelve el símbolo ganador
                         if (coincidencia) 
                         {
-                            return simbolo;
+                            return ficha;
                         }
                     }
                     
@@ -207,19 +207,19 @@ public class Tablero
     private char comprobarDiagonalInversa()
     {
         // variables
-         char simbolo;
+         char ficha;
          char simboloDef= '-';
          boolean coincidencia= true;
          // - - -
                     // cogemos el simbolo correspondiente
-                    simbolo = arrayTablero[0][2];
+                    ficha = arrayTablero[0][2];
                     // comparamos los símbolos
-                    if (simbolo != simboloDef) 
+                    if (ficha != simboloDef) 
                     {
                         for (int i = 1, j = 1; i < arrayTablero.length; i++, j--) 
                         {
                             // si NO coincide ya NO hay ganador
-                            if (simbolo != arrayTablero[i][j]) 
+                            if (ficha != arrayTablero[i][j]) 
                             {
                                 coincidencia = !coincidencia; 
                             }
@@ -228,7 +228,7 @@ public class Tablero
                         // si coincide, devuelve el símbolo ganador
                         if (coincidencia) 
                         {
-                            return simbolo;
+                            return ficha;
                         }
                     }
         // si no hay ganador, devuelve el simbolo por defecto
