@@ -21,38 +21,37 @@ public class Tablero
         // MÉTODOS
     
     // método para colocar la ficha (TERMINAR)
-    public void colocarFicha(char[][] arrayTablero, int fila, int columna, char simbolo, char simboloDef)
+    public void colocarFicha(char simbolo)
     {
         // variables
         boolean valido= false;
         // - - -
         
-        while(valido)
+        while(valido) // mientras la posicion no sea valida
         {
-            System.out.println("Introduce la fila");
-            fila= leer.nextInt();
-            System.out.println("Introduce la columna");
-            columna= leer.nextInt();
+            System.out.println("Introduce la fila:");
+            int fila= leer.nextInt();
+            System.out.println("Introduce la columna:");
+            int columna= leer.nextInt();
             
              if(fila >=0 && fila<arrayTablero.length && columna>=0 && columna<arrayTablero.length && arrayTablero[fila][columna] != simbolo)
              {
                  // si la posición es válida y no está ocupada, inserta la ficha.
                  arrayTablero[fila][columna] = simbolo;
-                 valido = true;
+                 valido= !valido; /// posicion valida
                     
              }else{
                     // si la posición no es válida o está ocupada, no inserta la ficha.
                     System.out.println("La posición no es correcta, vuelve a intentarlo.");
                   }
-             
         }
-       
     }
     
     // método para crear el tablero
     public void crearTablero()
     {
         char simboloDef= '-';
+        
         // pedir la longitud del tablero
         System.out.print("Introduce la longitud del tablero:");
         int param= leer.nextInt();
@@ -69,8 +68,8 @@ public class Tablero
     }
     
     // método para mostrar el tablero
-    public void mostrarTablero(char[][]arrayTablero)
-    {
+     public void mostrarTablero()
+     {
         for(int i=0;i<arrayTablero.length;i++)
         {
             for(int j=0;j<arrayTablero[0].length;j++)
@@ -79,7 +78,7 @@ public class Tablero
             }
             System.out.println("");
         }
-    }
+     }
     
     // método para verificar si el juego tiene que terminar
     public void verificarFinalizacion()
