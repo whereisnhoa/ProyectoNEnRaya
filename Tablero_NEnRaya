@@ -49,20 +49,21 @@ public class Tablero
        
     }
     
-    // método para crear el tablero (TERMINAR PARAM)
-    public void crearTablero(char[][]arrayTablero, char simbolo)
+    // método para crear el tablero
+    public void crearTablero()
     {
+        char simboloDef= '-';
         // pedir la longitud del tablero
-        System.out.println("Introduce la longitud del tablero");
+        System.out.print("Introduce la longitud del tablero:");
         int param= leer.nextInt();
-        arrayTablero = new char[param][param];
+        arrayTablero= new char[param][param];
         
         // crear tablero
         for (int i = 0; i < arrayTablero.length; i++) 
         {
             for (int j = 0; j < arrayTablero.length; j++)
             {
-              arrayTablero[i][j] = simbolo;
+              arrayTablero[i][j] = simboloDef;
             }
         }
     }
