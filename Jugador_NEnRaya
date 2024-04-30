@@ -1,3 +1,4 @@
+
 package proyectonenraya;
 
 public class Jugador 
@@ -18,18 +19,18 @@ public class Jugador
         // MÉTODOS
 
     // get y set de ficha
-    private char getFicha() 
+    public char getFicha() 
     {
         return ficha;
     }
 
-    private void setFicha(char ficha) 
+    public void setFicha(char ficha) 
     {
         this.ficha = ficha;
     }
 
     // get y set de nombre
-    private String getNombre() 
+    public String getNombre() 
     {
         return nombre;
     }
