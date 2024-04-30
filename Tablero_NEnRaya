@@ -82,12 +82,16 @@ public class Tablero
      }
     
     // método para verificar si el juego tiene que terminar
-    public void verificarFinalizacion()
+    public boolean verificarFinalizacion()
     {
-       //if(comprobarFila()||comprobarColumna()...) // TERMINAR
-       {
-           
-       }
+        char simboloDef= '-';
+        
+        if (comprobarEmpate()|| comprobarFila() != simboloDef|| comprobarColumna() != simboloDef|| comprobarDiagonal() != simboloDef || comprobarDiagonalInversa()!= simboloDef) 
+               {
+                   System.out.println("La partida ha terminado.");
+                   return true; // terminado
+               }
+               return false; // no terminado
     }
     
         // métodos que complementan el método anterior:
