@@ -1,3 +1,4 @@
+
 package proyectonenraya;
 
 //importar scanner
@@ -92,10 +93,11 @@ public class Tablero
         // métodos que complementan el método anterior:
     
     // método para comprobar fila
-    private char comprobarFila(char[][] arrayTablero, char simboloDef)
+    private char comprobarFila()
     {
         // variables
         char simbolo;
+        char simboloDef= '-';
         boolean coincidencia;
         // - - -
         
@@ -114,7 +116,7 @@ public class Tablero
                                 // si NO coincide ya NO hay ganador en esta fila
                                 if (simbolo != arrayTablero[i][j]) 
                                 {
-                                    coincidencia = false;
+                                    coincidencia = !coincidencia;
                                 }
                             }
                             
@@ -125,15 +127,17 @@ public class Tablero
                             }
                         }
                 }
+                
         // si no hay ganador, devuelve el símbolo por defecto
         return simboloDef;
     }
     
     // método para comprobar columna
-    private char comprobarColumna(char[][] arrayTablero, char simboloDef)
+    private char comprobarColumna()
     {
         // variables
          char simbolo;
+         char simboloDef= '-';
          boolean coincidencia;
          // - - -
 
@@ -152,7 +156,7 @@ public class Tablero
                             // si NO coincide ya NO hay ganador en esta columna
                             if (simbolo != arrayTablero[i][j]) 
                             {
-                                coincidencia = false;
+                                coincidencia = !coincidencia;
                             }
                         }
                         // si coincide la columna, devuelve el símbolo ganador
@@ -162,15 +166,17 @@ public class Tablero
                         }
                     }
                 }
+                
         // si no hay ganador, devuelve el simbolo por defecto
         return simboloDef;
     }
     
     // método para comprobar diagonal principal
-    private char comprobarDiagonal(char[][] arrayTablero, char simboloDef)
+    private char comprobarDiagonal()
     {
         // variables
         char simbolo;
+        char simboloDef= '-';
         boolean coincidencia= true;
         // - - -
                     // cogemos el simbolo correspondiente
@@ -183,7 +189,7 @@ public class Tablero
                             // si NO coincide ya NO hay ganador
                             if (simbolo != arrayTablero[i][i]) 
                             {
-                                coincidencia = false;
+                                coincidencia = !coincidencia;
                             }
                         }
                         // si coincide, devuelve el símbolo ganador
@@ -192,15 +198,17 @@ public class Tablero
                             return simbolo;
                         }
                     }
+                    
         // si no hay ganador, devuelve el simbolo por defecto
         return simboloDef;
     }
     
     // método para comprobar diagonal inversa
-    private char comprobarDiagonalInversa(char[][] arrayTablero, char simboloDef)
+    private char comprobarDiagonalInversa()
     {
         // variables
          char simbolo;
+         char simboloDef= '-';
          boolean coincidencia= true;
          // - - -
                     // cogemos el simbolo correspondiente
@@ -213,7 +221,7 @@ public class Tablero
                             // si NO coincide ya NO hay ganador
                             if (simbolo != arrayTablero[i][j]) 
                             {
-                                coincidencia = false; 
+                                coincidencia = !coincidencia; 
                             }
                         }
 
@@ -228,7 +236,7 @@ public class Tablero
     }
     
     // método para comprobar si hay empate
-    private boolean comprobarEmpate(char[][]arrayTablero)
+    private boolean comprobarEmpate()
     {
         boolean empate = true;
         
