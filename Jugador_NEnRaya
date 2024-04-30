@@ -4,16 +4,16 @@ package proyectonenraya;
 public class Jugador 
 {
     // atributos
-    private char ficha;
     private String nombre;
+    private char ficha;
     private boolean turno;
     
     // constructor
-    public Jugador(char ficha, String nombre, boolean turno) 
+    public Jugador(char ficha, String nombre) 
     {
-        this.ficha = ficha;
         this.nombre = nombre;
-        this.turno = false;
+        this.ficha = ficha;
+        turno = false;
     }
     
         // MÉTODOS
@@ -52,3 +52,4 @@ public class Jugador
     }
      
 }
+
