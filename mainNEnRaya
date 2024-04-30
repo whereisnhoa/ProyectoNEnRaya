@@ -3,18 +3,14 @@ import java.util.Scanner;
 
 public class Main_NEnRaya 
 {
-
-    public static void main(String [] args)
+    public static void main(String[] args) 
     {
-        Juego juego1= new Juego(); 
         
-     //   juego1.jugar(); 
-     
-        Scanner leer= new Scanner(System.in);
+        Jugador jugador1 = new Jugador("Jugador 1", 'X');
+        Jugador jugador2 = new Jugador("Jugador 2", 'O');
+
+        Juego juego = new Juego(3, jugador1, jugador2);
         
-        // crear jugadores
-        Jugador [] jugadores;
-        
+        juego.jugar();
     }
-    
-}    
+}  
