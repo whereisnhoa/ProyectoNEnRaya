@@ -1,18 +1,47 @@
-
 package proyectonenraya;
+import java.util.Random;
 
 public class Juego
 {
+    private Tablero tablero;
+    private Jugador jugador1;
+    private Jugador jugador2;
     
+    public Juego(int longitud, Jugador jugador1, Jugador jugador2) 
+    {
+        this.tablero = new Tablero(param);
+        this.jugador1 = jugador1;
+        this.jugador2 = jugador2;
+        jugador1.setTurno(true);
+        jugador2.setTurno(false);
+    }
+    
+    // Método para elegir turno
+    public void elegirTurno() 
+    {
+        Random random = new Random();
+        boolean turnoJugador1 = random.nextBoolean();
+        jugadorActual = turnoJugador1 ? jugador1 : jugador2;
+    }
+            
+    // Método para cambiar turno
+            
+            
     // Método para iniciar el juego
     public void jugar() 
     {
-        System.out.println("¡Bienvenido al juego del 3 en raya!");
-        System.out.println("Tablero inicial:");
-        arrayTablero.mostrarTablero();
+        // variables
+        boolean terminado=false;
+        Jugador jugadorActual= jugador1;
+        // - - -
+        
+        System.out.println("¡Bienvenido al juego del N en raya!");
+        tablero.crearTablero();
+        tablero.mostrarTablero();
+        
         System.out.println("Comienza " + jugador1.getNombre() + " (X)");
         
-        while (!juegoTerminado) 
+        while (terminado) 
         {
             System.out.println("Turno de " + turnoActual.getNombre() + " (" + turnoActual.getSimbolo() + ")");
             System.out.print("Ingrese la fila (0-2): ");
