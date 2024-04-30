@@ -1,4 +1,6 @@
+
 package proyectonenraya;
+//importar random
 import java.util.Random;
 //importar scanner
 import java.util.Scanner;
@@ -10,7 +12,7 @@ public class Juego
     private Jugador jugador2;
     private Jugador jugadorActual;
     
-    public Juego(int longitud, Jugador jugador1, Jugador jugador2) 
+    public Juego(char param, Jugador jugador1, Jugador jugador2) 
     {
         this.tablero = new Tablero(param);
         this.jugador1 = jugador1;
@@ -44,52 +46,19 @@ public class Juego
     {
         // variables
         boolean terminado=false;
-        Jugador jugadorActual= jugador1;
         // - - -
         
         System.out.println("¡Bienvenido al juego del N en raya!");
         tablero.crearTablero();
         tablero.mostrarTablero();
         
-        System.out.println("Comienza " + jugador1.getNombre() + " (X)");
-        
-        while (terminado) 
+        while(terminado)
         {
-            System.out.println("Turno de " + turnoActual.getNombre() + " (" + turnoActual.getSimbolo() + ")");
-            System.out.print("Ingrese la fila (0-2): ");
-            int fila = leer.nextInt();
-            System.out.print("Ingrese la columna (0-2): ");
-            int columna = leer.nextInt();
-
-            if (arrayTablero.realizarMovimiento(fila, columna, turnoActual.getSimbolo())) 
-            {
-                arrayTablero.mostrarTablero();
-                char ganador = arrayTablero.verificarGanador();
-                if (ganador != '-') 
-                {
-                    System.out.println("¡" + turnoActual.getNombre() + " ha ganado!");
-                    juegoTerminado = true;
-                } else if (tableroLleno()) 
-                    {
-                        System.out.println("¡Empate!");
-                        juegoTerminado = true;
-                    } else 
-                        {
-                            // Cambiar de turno
-                            if (turnoActual == jugador1) 
-                            {
-                                turnoActual = jugador2;
-                            } else 
-                                {
-                                    turnoActual = jugador1;
-                                }
-                        }           
-            } else 
-                   {
-                      System.out.println("Movimiento inválido. Inténtalo de nuevo.");
-                   }
+        tablero.colocarFicha(jugadorActual.getFicha());
+        tablero.mostrarTablero();
+        cambiarTurno();
         }
+        
     }
 
-    
 }
