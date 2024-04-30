@@ -1,11 +1,14 @@
 package proyectonenraya;
 import java.util.Random;
+//importar scanner
+import java.util.Scanner;
 
 public class Juego
 {
     private Tablero tablero;
     private Jugador jugador1;
     private Jugador jugador2;
+    private Jugador jugadorActual;
     
     public Juego(int longitud, Jugador jugador1, Jugador jugador2) 
     {
@@ -16,16 +19,25 @@ public class Juego
         jugador2.setTurno(false);
     }
     
+    //SCANNER "LEER"
+    static Scanner leer= new Scanner(System.in);
+    
     // Método para elegir turno
     public void elegirTurno() 
     {
         Random random = new Random();
         boolean turnoJugador1 = random.nextBoolean();
         jugadorActual = turnoJugador1 ? jugador1 : jugador2;
+        
+       // System.out.println("¿Qúe jugador va a empezar la partida?");
+       // jugadorActual= leer.();
     }
             
     // Método para cambiar turno
-            
+    public void cambiarTurno() 
+    {
+        jugadorActual = (jugadorActual == jugador1) ? jugador2 : jugador1;
+    }
             
     // Método para iniciar el juego
     public void jugar() 
